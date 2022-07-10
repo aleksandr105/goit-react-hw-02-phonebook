@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Container, TitleLIstContacts } from './App.styled';
+import { Container, TitleLIstContacts, Titel } from './App.styled';
 import { ContactForm } from '../ContatctForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from '../Filter/Filter';
@@ -51,7 +51,7 @@ export class App extends Component {
     return (
       <section>
         <Container>
-          <h1>Phonebook</h1>
+          <Titel>Phonebook</Titel>
           <ContactForm handleSubmit={this.handleSubmit} />
           <TitleLIstContacts>Contacts</TitleLIstContacts>
           <Filter changeFilter={this.changeFilter} />

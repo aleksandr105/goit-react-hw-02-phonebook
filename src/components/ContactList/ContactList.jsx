@@ -1,14 +1,19 @@
+import { List, ButtonDelete, Item, ItemText } from './ContactList.styled';
+
 export const ContactList = ({ visibalFiltr, deleteContact }) => {
   return (
-    <ul>
-      {visibalFiltr.map(({ id, name, number }) => (
-        <li key={id}>
-          {name}: {number}
-          <button type="button" onClick={() => deleteContact(id)}>
+    <List>
+      {visibalFiltr.map(({ id, name, number }, index) => (
+        <Item key={id}>
+          {index + 1}..
+          <ItemText>
+            {name}: {number}
+          </ItemText>
+          <ButtonDelete type="button" onClick={() => deleteContact(id)}>
             Delete
-          </button>
-        </li>
+          </ButtonDelete>
+        </Item>
       ))}
-    </ul>
+    </List>
   );
 };

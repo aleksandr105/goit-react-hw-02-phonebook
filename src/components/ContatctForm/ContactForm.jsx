@@ -1,4 +1,5 @@
 import { Formik, Form, Field, ErrorMessage } from 'formik';
+import { Label, ButtonAdd } from './ContactForm.styled';
 import * as yup from 'yup';
 
 let initialValues = {
@@ -7,8 +8,13 @@ let initialValues = {
 };
 
 let schema = yup.object().shape({
-  name: yup.string().min(2).max(25).required(),
-  number: yup.string().min(6).max(15).required(),
+  name: yup.string().min(2).max(25).required('Mandatory field'),
+  number: yup
+    .number()
+    .positive()
+    .integer()
+    .lessThan(9999999999999)
+    .required('Mandatory field'),
 });
 
 export const ContactForm = ({ handleSubmit }) => {
@@ -18,18 +24,46 @@ export const ContactForm = ({ handleSubmit }) => {
       onSubmit={handleSubmit}
       validationSchema={schema}
     >
-      <Form name="phonebook" autoComplete="off">
-        <label htmlFor="">
+      <Form
+        name="phonebook"
+        autoComplete="off"
+        style={{ border: '2px solid black', padding: '30px' }}
+      >
+        <Label htmlFor="">
           Name
-          <Field type="text" name="name" />
+          <Field
+            placeholder="Rosie Simpson"
+            type="text"
+            name="name"
+            style={{
+              display: 'block',
+              width: '70%',
+              height: '25px',
+              marginBottom: '15px',
+              marginTop: '5px',
+              padding: '5px',
+            }}
+          />
           <ErrorMessage name="name" component="p" />
-        </label>
-        <label htmlFor="">
+        </Label>
+        <Label htmlFor="">
           Number
-          <Field type="tel" name="number" />
+          <Field
+            placeholder="459-12-56"
+            type="tel"
+            name="number"
+            style={{
+              display: 'block',
+              width: '70%',
+              height: '25px',
+              marginBottom: '15px',
+              marginTop: '5px',
+              padding: '5px',
+            }}
+          />
           <ErrorMessage name="number" component="p" />
-        </label>
-        <button type="submit">Add contact</button>
+        </Label>
+        <ButtonAdd type="submit">Add contact</ButtonAdd>
       </Form>
     </Formik>
   );

@@ -1,8 +1,14 @@
+import { FilterInput, FilterLabel } from './Filter.styled';
+
 export const Filter = ({ changeFilter }) => {
   return (
-    <label htmlFor="">
+    <FilterLabel htmlFor="">
       Fild contacts by name
-      <input type="text" onChange={changeFilter} />
-    </label>
+      <FilterInput
+        type="text"
+        placeholder="Aleksandr"
+        onChange={changeFilter}
+      />
+    </FilterLabel>
   );
 };
