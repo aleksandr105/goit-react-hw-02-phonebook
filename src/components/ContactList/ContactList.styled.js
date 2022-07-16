@@ -9,6 +9,7 @@ export const List = styled.ul`
 export const ItemText = styled.span`
   color: black;
   font-weight: 600;
+  margin-left: 3px;
 `;
 
 export const Item = styled.li`
