@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import { Container, TitleLIstContacts, Titel } from './App.styled';
+import {
+  Container,
+  TitleLIstContacts,
+  Titel,
+  NoContactMessage,
+} from './App.styled';
 import { ContactForm } from '../ContatctForm/ContactForm';
 import { ContactList } from 'components/ContactList/ContactList';
 import { Filter } from '../Filter/Filter';
@@ -54,12 +59,17 @@ export class App extends Component {
           <Titel>Phonebook</Titel>
           <ContactForm handleSubmit={this.handleSubmit} />
           <TitleLIstContacts>Contacts</TitleLIstContacts>
-          <Filter changeFilter={this.changeFilter} />
-          {this.state.contacts.length > 0 && (
-            <ContactList
-              visibalFiltr={visibalFiltr}
-              deleteContact={this.deleteContact}
-            />
+
+          {this.state.contacts.length > 0 ? (
+            <>
+              <Filter changeFilter={this.changeFilter} />
+              <ContactList
+                visibalFiltr={visibalFiltr}
+                deleteContact={this.deleteContact}
+              />
+            </>
+          ) : (
+            <NoContactMessage>No contact yet</NoContactMessage>
           )}
         </Container>
       </section>
