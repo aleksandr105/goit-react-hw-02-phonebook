@@ -16,23 +16,25 @@ export class App extends Component {
   };
 
   handleSubmit = ({ name, number }, { resetForm }) => {
-    const contact = {
-      id: name,
-      name: name,
-      number: number.match(/\d{3}(?=\d{2,3})|\d+/g).join('-'),
-    };
-
     const contactСheck = this.state.contacts.find(
       el => el.name.toLowerCase() === name.toLowerCase()
     );
 
-    !contactСheck
-      ? this.setState(prevState => ({
-          contacts: [contact, ...prevState.contacts],
-        }))
-      : alert(`${name} is alreadi in contacts`);
+    if (!contactСheck) {
+      const contact = {
+        id: name,
+        name: name,
+        number: number.match(/\d{3}(?=\d{2,3})|\d+/g).join('-'),
+      };
 
-    resetForm();
+      this.setState(prevState => ({
+        contacts: [contact, ...prevState.contacts],
+      }));
+
+      resetForm();
+    } else {
+      alert(`${name} is alreadi in contacts`);
+    }
   };
 
   deleteContact = id => {
